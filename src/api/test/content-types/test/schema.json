@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tests",
+  "info": {
+    "singularName": "test",
+    "pluralName": "tests",
+    "displayName": "test"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "podcast": {
+      "type": "text"
+    }
+    ,"phone": {
+      "type": "string",
+      "unique": true
+    },
+    "hello": {
+      "type": "boolean"
+    }
+  }
+}
