@@ -1,5 +1,4 @@
 import { Context } from 'koa';
-import { sanitizeContentAPIOutput } from '@strapi/utils';
 
 interface LoginParams {
   identifier: string;
@@ -57,7 +56,8 @@ export default ({ strapi }: { strapi: any }) => ({
       .issue({ id: user.id });
 
     const model = strapi.getModel('plugin::users-permissions.user');
-    const sanitizedUser = await sanitizeContentAPIOutput(user, model);
+
+    const sanitizedUser = await strapi.entityService.sanitizeOutput(user, model);
 
     ctx.body = {
       jwt: token,
