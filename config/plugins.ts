@@ -1,7 +1,7 @@
 export default () => ({
     email: {
       config: {
-        provider: 'smtp',
+        provider: 'nodemailer',
         providerOptions: {
           host: 'sandbox.smtp.mailtrap.io',
           port: 587,
