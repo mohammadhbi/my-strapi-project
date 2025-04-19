@@ -1,0 +1,49 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ({ strapi }) => ({
+    async callback(ctx) {
+        const provider = (ctx.params.provider || 'local').toLowerCase();
+        if (provider !== 'local') {
+            return strapi
+                .plugin('users-permissions')
+                .controller('auth')
+                .callback(ctx);
+        }
+        const { identifier, password } = ctx.request.body;
+        if (!identifier || !password) {
+            return ctx.badRequest('Please provide identifier and password');
+        }
+        const user = (await strapi.db.query('plugin::users-permissions.user').findOne({
+            where: { email: identifier.toLowerCase() },
+        })) ||
+            (await strapi.db.query('plugin::users-permissions.user').findOne({
+                where: { username: identifier },
+            })) ||
+            (await strapi.db.query('plugin::users-permissions.user').findOne({
+                where: { phone: identifier },
+            }));
+        if (!user) {
+            return ctx.badRequest('Invalid identifier or password');
+        }
+        const validPassword = await strapi
+            .plugin('users-permissions')
+            .service('user')
+            .validatePassword(password, user.password);
+        if (!validPassword) {
+            return ctx.badRequest('Invalid identifier or password');
+        }
+        if (user.blocked === true) {
+            return ctx.badRequest('User is blocked');
+        }
+        const token = strapi
+            .plugin('users-permissions')
+            .service('jwt')
+            .issue({ id: user.id });
+        const model = strapi.getModel('plugin::users-permissions.user');
+        const sanitizedUser = await strapi.entityService.sanitizeOutput(user, model);
+        ctx.body = {
+            jwt: token,
+            user: sanitizedUser,
+        };
+    },
+});
