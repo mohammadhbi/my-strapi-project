@@ -534,6 +534,56 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiSignupVerificatioSignupVerificatio
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'signup_verificatios';
+  info: {
+    displayName: 'signup-verification';
+    pluralName: 'signup-verificatios';
+    singularName: 'signup-verificatio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Email: Schema.Attribute.Text & Schema.Attribute.Required;
+    emailcode: Schema.Attribute.BigInteger;
+    isEmailVerified: Schema.Attribute.Boolean;
+    isPhoneVerified: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::signup-verificatio.signup-verificatio'
+    > &
+      Schema.Attribute.Private;
+    password: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 12;
+        minLength: 6;
+      }>;
+    phonecode: Schema.Attribute.BigInteger &
+      Schema.Attribute.SetMinMax<
+        {
+          max: '6';
+        },
+        string
+      >;
+    phoneNumber: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 11;
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTestTest extends Struct.CollectionTypeSchema {
   collectionName: 'tests';
   info: {
@@ -1075,6 +1125,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::signup-verificatio.signup-verificatio': ApiSignupVerificatioSignupVerificatio;
       'api::test.test': ApiTestTest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
