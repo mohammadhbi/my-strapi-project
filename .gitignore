@@ -13,5 +13,3 @@ logs/
 .DS_Store
 Thumbs.db
 
-# Environment variables (for sensitive info)
-.env
