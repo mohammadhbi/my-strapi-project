@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ({ env }) => ({
+exports.default = () => ({
     'users-permissions': {
         config: {
-            providers: ['local'],
+            jwt: {
+                expiresIn: '7d',
+            },
         },
     },
 });
