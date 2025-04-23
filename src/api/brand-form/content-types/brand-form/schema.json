@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brand_forms",
+  "info": {
+    "singularName": "brand-form",
+    "pluralName": "brand-forms",
+    "displayName": "BrandForm"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Brandname": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Country": {
+      "type": "enumeration",
+      "enum": [
+        "USA",
+        "Canada",
+        "UK",
+        "Australia",
+        "Iran",
+        "UAE"
+      ],
+      "required": true
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "Fashion",
+        "Technology",
+        "Food",
+        "Health",
+        "UI/UX",
+        "Frontend",
+        "Backend",
+        "Devops"
+      ],
+      "required": true
+    },
+    "Subcategory": {
+      "type": "enumeration",
+      "enum": [
+        "Clothing",
+        "Accessories",
+        "Gadgets",
+        "Software"
+      ],
+      "required": true
+    },
+    "Brandtag": {
+      "type": "enumeration",
+      "enum": [
+        "Premium",
+        "Ecofriendly",
+        "Luxury",
+        "Affordable"
+      ],
+      "required": true
+    },
+    "Privacy": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}

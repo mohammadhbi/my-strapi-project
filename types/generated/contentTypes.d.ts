@@ -470,6 +470,62 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
+  collectionName: 'brand_forms';
+  info: {
+    displayName: 'BrandForm';
+    pluralName: 'brand-forms';
+    singularName: 'brand-form';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Brandname: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    Brandtag: Schema.Attribute.Enumeration<
+      ['Premium', 'Ecofriendly', 'Luxury', 'Affordable']
+    > &
+      Schema.Attribute.Required;
+    Category: Schema.Attribute.Enumeration<
+      [
+        'Fashion',
+        'Technology',
+        'Food',
+        'Health',
+        'UI/UX',
+        'Frontend',
+        'Backend',
+        'Devops',
+      ]
+    > &
+      Schema.Attribute.Required;
+    Country: Schema.Attribute.Enumeration<
+      ['USA', 'Canada', 'UK', 'Australia', 'Iran', 'UAE']
+    > &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::brand-form.brand-form'
+    > &
+      Schema.Attribute.Private;
+    Privacy: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    Subcategory: Schema.Attribute.Enumeration<
+      ['Clothing', 'Accessories', 'Gadgets', 'Software']
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -528,56 +584,6 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiSignupVerificatioSignupVerificatio
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'signup_verificatios';
-  info: {
-    displayName: 'signup-verification';
-    pluralName: 'signup-verificatios';
-    singularName: 'signup-verificatio';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    Email: Schema.Attribute.Text & Schema.Attribute.Required;
-    emailcode: Schema.Attribute.BigInteger;
-    isEmailVerified: Schema.Attribute.Boolean;
-    isPhoneVerified: Schema.Attribute.Boolean &
-      Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::signup-verificatio.signup-verificatio'
-    > &
-      Schema.Attribute.Private;
-    password: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 12;
-        minLength: 6;
-      }>;
-    phonecode: Schema.Attribute.BigInteger &
-      Schema.Attribute.SetMinMax<
-        {
-          max: '6';
-        },
-        string
-      >;
-    phoneNumber: Schema.Attribute.Text &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 11;
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1123,9 +1129,9 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::brand-form.brand-form': ApiBrandFormBrandForm;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
-      'api::signup-verificatio.signup-verificatio': ApiSignupVerificatioSignupVerificatio;
       'api::test.test': ApiTestTest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
