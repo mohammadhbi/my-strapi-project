@@ -481,28 +481,9 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Brandname: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    Brandtag: Schema.Attribute.Enumeration<
-      ['Premium', 'Ecofriendly', 'Luxury', 'Affordable']
-    > &
-      Schema.Attribute.Required;
-    Category: Schema.Attribute.Enumeration<
-      [
-        'Fashion',
-        'Technology',
-        'Food',
-        'Health',
-        'UI/UX',
-        'Frontend',
-        'Backend',
-        'Devops',
-      ]
-    > &
-      Schema.Attribute.Required;
+    BrandName: Schema.Attribute.String;
     Country: Schema.Attribute.Enumeration<
-      ['USA', 'Canada', 'UK', 'Australia', 'Iran', 'UAE']
+      ['Iran', 'USA', 'Canada', 'UK', 'Australia']
     > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
@@ -514,12 +495,7 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
       'api::brand-form.brand-form'
     > &
       Schema.Attribute.Private;
-    Privacy: Schema.Attribute.Boolean & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    Subcategory: Schema.Attribute.Enumeration<
-      ['Clothing', 'Accessories', 'Gadgets', 'Software']
-    > &
-      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

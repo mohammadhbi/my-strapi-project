@@ -10,59 +10,18 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "Brandname": {
-      "type": "string",
-      "required": true,
-      "unique": true
+    "BrandName": {
+      "type": "string"
     },
     "Country": {
       "type": "enumeration",
       "enum": [
+        "Iran",
         "USA",
         "Canada",
         "UK",
-        "Australia",
-        "Iran",
-        "UAE"
+        "Australia"
       ],
-      "required": true
-    },
-    "Category": {
-      "type": "enumeration",
-      "enum": [
-        "Fashion",
-        "Technology",
-        "Food",
-        "Health",
-        "UI/UX",
-        "Frontend",
-        "Backend",
-        "Devops"
-      ],
-      "required": true
-    },
-    "Subcategory": {
-      "type": "enumeration",
-      "enum": [
-        "Clothing",
-        "Accessories",
-        "Gadgets",
-        "Software"
-      ],
-      "required": true
-    },
-    "Brandtag": {
-      "type": "enumeration",
-      "enum": [
-        "Premium",
-        "Ecofriendly",
-        "Luxury",
-        "Affordable"
-      ],
-      "required": true
-    },
-    "Privacy": {
-      "type": "boolean",
       "required": true
     }
   }
