@@ -4,14 +4,16 @@
   "info": {
     "singularName": "brand-form",
     "pluralName": "brand-forms",
-    "displayName": "BrandForm"
+    "displayName": "BrandForm",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
     "BrandName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Country": {
       "type": "enumeration",
@@ -23,6 +25,29 @@
         "Australia"
       ],
       "required": true
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "IT",
+        "Indestury",
+        "architecture",
+        "Civil",
+        "Frontend"
+      ],
+      "required": true
+    },
+    "Subcategory": {
+      "type": "enumeration",
+      "enum": [
+        "sub1",
+        "sub2",
+        "sub3"
+      ],
+      "required": true
+    },
+    "Brandtags": {
+      "type": "json"
     }
   }
 }
