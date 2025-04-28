@@ -4,50 +4,40 @@
   "info": {
     "singularName": "brand-form",
     "pluralName": "brand-forms",
-    "displayName": "BrandForm",
-    "description": ""
+    "displayName": "BrandForm"
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "BrandName": {
+    "Brandname": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "Country": {
       "type": "enumeration",
       "enum": [
         "Iran",
         "USA",
-        "Canada",
-        "UK",
-        "Australia"
+        "UAE",
+        "UK"
       ],
       "required": true
     },
-    "Category": {
-      "type": "enumeration",
-      "enum": [
-        "IT",
-        "Indestury",
-        "architecture",
-        "Civil",
-        "Frontend"
-      ],
+    "category": {
+      "type": "string",
       "required": true
     },
     "Subcategory": {
-      "type": "enumeration",
-      "enum": [
-        "sub1",
-        "sub2",
-        "sub3"
-      ],
+      "type": "string",
       "required": true
     },
-    "Brandtags": {
+    "tags": {
       "type": "json"
+    },
+    "agree": {
+      "type": "boolean"
     }
   }
 }

@@ -473,7 +473,6 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
 export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
   collectionName: 'brand_forms';
   info: {
-    description: '';
     displayName: 'BrandForm';
     pluralName: 'brand-forms';
     singularName: 'brand-form';
@@ -482,15 +481,12 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    BrandName: Schema.Attribute.String & Schema.Attribute.Required;
-    Brandtags: Schema.Attribute.JSON;
-    Category: Schema.Attribute.Enumeration<
-      ['IT', 'Indestury', 'architecture', 'Civil', 'Frontend']
-    > &
-      Schema.Attribute.Required;
-    Country: Schema.Attribute.Enumeration<
-      ['Iran', 'USA', 'Canada', 'UK', 'Australia']
-    > &
+    agree: Schema.Attribute.Boolean;
+    Brandname: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    category: Schema.Attribute.String & Schema.Attribute.Required;
+    Country: Schema.Attribute.Enumeration<['Iran', 'USA', 'UAE', 'UK']> &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -502,8 +498,8 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    Subcategory: Schema.Attribute.Enumeration<['sub1', 'sub2', 'sub3']> &
-      Schema.Attribute.Required;
+    Subcategory: Schema.Attribute.String & Schema.Attribute.Required;
+    tags: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
