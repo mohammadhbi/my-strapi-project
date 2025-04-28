@@ -4,7 +4,8 @@
   "info": {
     "singularName": "brand-form",
     "pluralName": "brand-forms",
-    "displayName": "BrandForm"
+    "displayName": "BrandForm",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,16 +15,6 @@
       "type": "string",
       "required": true,
       "unique": true
-    },
-    "Country": {
-      "type": "enumeration",
-      "enum": [
-        "Iran",
-        "USA",
-        "UAE",
-        "UK"
-      ],
-      "required": true
     },
     "category": {
       "type": "string",
@@ -38,6 +29,10 @@
     },
     "agree": {
       "type": "boolean"
+    },
+    "Country": {
+      "type": "string",
+      "required": true
     }
   }
 }
