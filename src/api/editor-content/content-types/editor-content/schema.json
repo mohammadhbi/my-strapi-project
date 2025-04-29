@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "editor_contents",
+  "info": {
+    "singularName": "editor-content",
+    "pluralName": "editor-contents",
+    "displayName": "EditorContent"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "json"
+    }
+  }
+}
