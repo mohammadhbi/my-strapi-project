@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "social_links",
+  "info": {
+    "singularName": "social-link",
+    "pluralName": "social-links",
+    "displayName": "socialLink"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "socials": {
+      "type": "enumeration",
+      "enum": [
+        "Website",
+        "YouTube",
+        "Instagram",
+        "Twitter",
+        "Discord",
+        "Whatsapp",
+        "Telegram",
+        "Facebook",
+        "Linkedin"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

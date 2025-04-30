@@ -600,6 +600,49 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
+  collectionName: 'social_links';
+  info: {
+    displayName: 'socialLink';
+    pluralName: 'social-links';
+    singularName: 'social-link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::social-link.social-link'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    socials: Schema.Attribute.Enumeration<
+      [
+        'Website',
+        'YouTube',
+        'Instagram',
+        'Twitter',
+        'Discord',
+        'Whatsapp',
+        'Telegram',
+        'Facebook',
+        'Linkedin',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+  };
+}
+
 export interface ApiTestTest extends Struct.CollectionTypeSchema {
   collectionName: 'tests';
   info: {
@@ -1143,6 +1186,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::editor-content.editor-content': ApiEditorContentEditorContent;
       'api::global.global': ApiGlobalGlobal;
+      'api::social-link.social-link': ApiSocialLinkSocialLink;
       'api::test.test': ApiTestTest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
