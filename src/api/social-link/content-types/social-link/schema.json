@@ -4,30 +4,15 @@
   "info": {
     "singularName": "social-link",
     "pluralName": "social-links",
-    "displayName": "socialLink"
+    "displayName": "socialLink",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "socials": {
-      "type": "enumeration",
-      "enum": [
-        "Website",
-        "YouTube",
-        "Instagram",
-        "Twitter",
-        "Discord",
-        "Whatsapp",
-        "Telegram",
-        "Facebook",
-        "Linkedin"
-      ]
-    },
-    "url": {
-      "type": "string",
-      "required": true,
-      "unique": true
+    "socialLink": {
+      "type": "json"
     }
   }
 }

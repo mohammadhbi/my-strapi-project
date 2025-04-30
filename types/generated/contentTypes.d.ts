@@ -603,6 +603,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
   collectionName: 'social_links';
   info: {
+    description: '';
     displayName: 'socialLink';
     pluralName: 'social-links';
     singularName: 'social-link';
@@ -621,25 +622,10 @@ export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    socials: Schema.Attribute.Enumeration<
-      [
-        'Website',
-        'YouTube',
-        'Instagram',
-        'Twitter',
-        'Discord',
-        'Whatsapp',
-        'Telegram',
-        'Facebook',
-        'Linkedin',
-      ]
-    >;
+    socialLink: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
   };
 }
 
