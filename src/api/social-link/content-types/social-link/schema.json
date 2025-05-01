@@ -11,14 +11,25 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "socialLink": {
-      "type": "json"
-    },
     "users_permissions_user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "social_link"
+    },
+    "socials": {
+      "type": "enumeration",
+      "enum": [
+        "Website",
+        "YouTube",
+        "Instagram",
+        "Twitter",
+        "Discord",
+        "Whatsapp",
+        "Telegram",
+        "Facebook",
+        "Linkedin"
+      ]
     }
   }
 }
