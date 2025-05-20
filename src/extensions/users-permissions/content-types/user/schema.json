@@ -73,11 +73,11 @@
       "type": "media",
       "multiple": false
     },
-    "social_link": {
+    "social_links": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::social-link.social-link",
-      "inversedBy": "users_permissions_users"
+      "mappedBy": "users_permissions_user"
     }
   }
 }
