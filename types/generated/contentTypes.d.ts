@@ -639,8 +639,8 @@ export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String;
-    users_permissions_user: Schema.Attribute.Relation<
-      'oneToOne',
+    users_permissions_users: Schema.Attribute.Relation<
+      'oneToMany',
       'plugin::users-permissions.user'
     >;
   };
@@ -1161,7 +1161,7 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.role'
     >;
     social_link: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'api::social-link.social-link'
     >;
     updatedAt: Schema.Attribute.DateTime;

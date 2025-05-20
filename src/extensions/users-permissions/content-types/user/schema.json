@@ -65,12 +65,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "social_link": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::social-link.social-link",
-      "mappedBy": "users_permissions_user"
-    },
     "avatar": {
       "allowedTypes": [
         "images",
@@ -78,6 +72,12 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "social_link": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::social-link.social-link",
+      "inversedBy": "users_permissions_users"
     }
   }
 }

@@ -11,11 +11,11 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "users_permissions_user": {
+    "users_permissions_users": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "social_link"
+      "mappedBy": "social_link"
     },
     "socials": {
       "type": "enumeration",
