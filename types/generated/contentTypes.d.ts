@@ -622,19 +622,7 @@ export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    socials: Schema.Attribute.Enumeration<
-      [
-        'Website',
-        'YouTube',
-        'Instagram',
-        'Twitter',
-        'Discord',
-        'Whatsapp',
-        'Telegram',
-        'Facebook',
-        'Linkedin',
-      ]
-    >;
+    social: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

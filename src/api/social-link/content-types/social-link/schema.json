@@ -17,22 +17,12 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "social_links"
     },
-    "socials": {
-      "type": "enumeration",
-      "enum": [
-        "Website",
-        "YouTube",
-        "Instagram",
-        "Twitter",
-        "Discord",
-        "Whatsapp",
-        "Telegram",
-        "Facebook",
-        "Linkedin"
-      ]
-    },
     "url": {
       "type": "string"
+    },
+    "social": {
+      "type": "string",
+      "required": false
     }
   }
 }
