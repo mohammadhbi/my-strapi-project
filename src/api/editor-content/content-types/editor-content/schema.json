@@ -4,7 +4,8 @@
   "info": {
     "singularName": "editor-content",
     "pluralName": "editor-contents",
-    "displayName": "EditorContent"
+    "displayName": "EditorContent",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,6 +16,11 @@
     },
     "content": {
       "type": "json"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

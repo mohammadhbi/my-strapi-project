@@ -546,6 +546,7 @@ export interface ApiEditorContentEditorContent
   extends Struct.CollectionTypeSchema {
   collectionName: 'editor_contents';
   info: {
+    description: '';
     displayName: 'EditorContent';
     pluralName: 'editor-contents';
     singularName: 'editor-content';
@@ -569,6 +570,10 @@ export interface ApiEditorContentEditorContent
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
