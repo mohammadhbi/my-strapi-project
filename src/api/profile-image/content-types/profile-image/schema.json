@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profile_images",
+  "info": {
+    "singularName": "profile-image",
+    "pluralName": "profile-images",
+    "displayName": "profile-image"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "profileimage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "profile_image"
+    }
+  }
+}

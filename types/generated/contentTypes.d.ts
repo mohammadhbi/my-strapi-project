@@ -645,6 +645,42 @@ export interface ApiProfileAvatarProfileAvatar
   };
 }
 
+export interface ApiProfileImageProfileImage
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'profile_images';
+  info: {
+    displayName: 'profile-image';
+    pluralName: 'profile-images';
+    singularName: 'profile-image';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile-image.profile-image'
+    > &
+      Schema.Attribute.Private;
+    profileimage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiProfileMediaProfileMedia extends Struct.SingleTypeSchema {
   collectionName: 'profile_medias';
   info: {
@@ -1294,6 +1330,10 @@ export interface PluginUsersPermissionsUser
       'oneToOne',
       'api::profile-avatar.profile-avatar'
     >;
+    profile_image: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::profile-image.profile-image'
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1337,6 +1377,7 @@ declare module '@strapi/strapi' {
       'api::editor-content.editor-content': ApiEditorContentEditorContent;
       'api::global.global': ApiGlobalGlobal;
       'api::profile-avatar.profile-avatar': ApiProfileAvatarProfileAvatar;
+      'api::profile-image.profile-image': ApiProfileImageProfileImage;
       'api::profile-media.profile-media': ApiProfileMediaProfileMedia;
       'api::social-link.social-link': ApiSocialLinkSocialLink;
       'api::social.social': ApiSocialSocial;

@@ -102,6 +102,12 @@
       "relation": "oneToOne",
       "target": "api::profile-avatar.profile-avatar",
       "mappedBy": "users_permissions_user"
+    },
+    "profile_image": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-image.profile-image",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
