@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "profile_medias",
+  "info": {
+    "singularName": "profile-media",
+    "pluralName": "profile-medias",
+    "displayName": "profile-image",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "profileimage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

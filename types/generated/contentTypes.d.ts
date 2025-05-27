@@ -612,6 +612,74 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiProfileAvatarProfileAvatar
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'profile_avatars';
+  info: {
+    displayName: 'profile-avatar';
+    pluralName: 'profile-avatars';
+    singularName: 'profile-avatar';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile-avatar.profile-avatar'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiProfileMediaProfileMedia extends Struct.SingleTypeSchema {
+  collectionName: 'profile_medias';
+  info: {
+    description: '';
+    displayName: 'profile-image';
+    pluralName: 'profile-medias';
+    singularName: 'profile-media';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile-media.profile-media'
+    > &
+      Schema.Attribute.Private;
+    profileimage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
   collectionName: 'social_links';
   info: {
@@ -1222,6 +1290,10 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    profile_avatar: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::profile-avatar.profile-avatar'
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1264,6 +1336,8 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::editor-content.editor-content': ApiEditorContentEditorContent;
       'api::global.global': ApiGlobalGlobal;
+      'api::profile-avatar.profile-avatar': ApiProfileAvatarProfileAvatar;
+      'api::profile-media.profile-media': ApiProfileMediaProfileMedia;
       'api::social-link.social-link': ApiSocialLinkSocialLink;
       'api::social.social': ApiSocialSocial;
       'api::test.test': ApiTestTest;

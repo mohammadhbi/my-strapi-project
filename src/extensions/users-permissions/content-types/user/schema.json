@@ -96,6 +96,12 @@
       "relation": "oneToMany",
       "target": "api::tier.tier",
       "mappedBy": "users_permissions_user"
+    },
+    "profile_avatar": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-avatar.profile-avatar",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

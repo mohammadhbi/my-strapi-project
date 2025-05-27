@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profile_avatars",
+  "info": {
+    "singularName": "profile-avatar",
+    "pluralName": "profile-avatars",
+    "displayName": "profile-avatar"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "avatar": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "profile_avatar"
+    }
+  }
+}
