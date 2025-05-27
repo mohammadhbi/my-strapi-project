@@ -497,6 +497,9 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
       'api::brand-form.brand-form'
     > &
       Schema.Attribute.Private;
+    profileimage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     Subcategory: Schema.Attribute.String & Schema.Attribute.Required;
     tags: Schema.Attribute.JSON;
