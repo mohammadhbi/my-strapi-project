@@ -783,6 +783,38 @@ export interface ApiSocialSocial extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTeamTeam extends Struct.CollectionTypeSchema {
+  collectionName: 'teams';
+  info: {
+    displayName: 'team';
+    pluralName: 'teams';
+    singularName: 'team';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::team.team'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiTestTest extends Struct.CollectionTypeSchema {
   collectionName: 'tests';
   info: {
@@ -1346,6 +1378,7 @@ export interface PluginUsersPermissionsUser
       'api::social-link.social-link'
     >;
     socials: Schema.Attribute.Relation<'oneToMany', 'api::social.social'>;
+    teams: Schema.Attribute.Relation<'oneToMany', 'api::team.team'>;
     tiers: Schema.Attribute.Relation<'oneToMany', 'api::tier.tier'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1381,6 +1414,7 @@ declare module '@strapi/strapi' {
       'api::profile-media.profile-media': ApiProfileMediaProfileMedia;
       'api::social-link.social-link': ApiSocialLinkSocialLink;
       'api::social.social': ApiSocialSocial;
+      'api::team.team': ApiTeamTeam;
       'api::test.test': ApiTestTest;
       'api::tier.tier': ApiTierTier;
       'plugin::content-releases.release': PluginContentReleasesRelease;

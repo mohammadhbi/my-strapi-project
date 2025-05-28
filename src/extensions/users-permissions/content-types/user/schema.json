@@ -108,6 +108,12 @@
       "relation": "oneToOne",
       "target": "api::profile-image.profile-image",
       "mappedBy": "users_permissions_user"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team.team",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
