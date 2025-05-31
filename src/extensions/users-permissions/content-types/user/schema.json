@@ -114,6 +114,12 @@
       "relation": "oneToMany",
       "target": "api::team.team",
       "mappedBy": "users_permissions_user"
+    },
+    "faqs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::faq.faq",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
