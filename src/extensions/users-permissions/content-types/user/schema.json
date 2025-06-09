@@ -79,12 +79,6 @@
       "target": "api::social-link.social-link",
       "mappedBy": "users_permissions_user"
     },
-    "socials": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::social.social",
-      "mappedBy": "user"
-    },
     "brand_forms": {
       "type": "relation",
       "relation": "oneToMany",

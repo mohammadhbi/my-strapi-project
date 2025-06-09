@@ -4,23 +4,24 @@
   "info": {
     "singularName": "social",
     "pluralName": "socials",
-    "displayName": "social"
+    "displayName": "social",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "socials"
-    },
     "social": {
       "type": "string"
     },
     "url": {
       "type": "string"
+    },
+    "brand_form": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand-form.brand-form",
+      "inversedBy": "socials"
     }
   }
 }

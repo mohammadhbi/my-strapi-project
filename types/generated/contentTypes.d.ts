@@ -414,7 +414,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     blocks: Schema.Attribute.DynamicZone<
       ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
     >;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -491,6 +490,10 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    editor_contents: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::editor-content.editor-content'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -501,6 +504,7 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    socials: Schema.Attribute.Relation<'oneToMany', 'api::social.social'>;
     Subcategory: Schema.Attribute.String & Schema.Attribute.Required;
     tags: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
@@ -510,38 +514,6 @@ export interface ApiBrandFormBrandForm extends Struct.CollectionTypeSchema {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-  };
-}
-
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
-  info: {
-    description: 'Organize your content into categories';
-    displayName: 'Category';
-    pluralName: 'categories';
-    singularName: 'category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -558,6 +530,10 @@ export interface ApiEditorContentEditorContent
     draftAndPublish: true;
   };
   attributes: {
+    brand_form: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::brand-form.brand-form'
+    >;
     content: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -573,10 +549,6 @@ export interface ApiEditorContentEditorContent
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -783,6 +755,7 @@ export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
 export interface ApiSocialSocial extends Struct.CollectionTypeSchema {
   collectionName: 'socials';
   info: {
+    description: '';
     displayName: 'social';
     pluralName: 'socials';
     singularName: 'social';
@@ -791,6 +764,10 @@ export interface ApiSocialSocial extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    brand_form: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::brand-form.brand-form'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -806,10 +783,6 @@ export interface ApiSocialSocial extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String;
-    user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -1408,7 +1381,6 @@ export interface PluginUsersPermissionsUser
       'oneToMany',
       'api::social-link.social-link'
     >;
-    socials: Schema.Attribute.Relation<'oneToMany', 'api::social.social'>;
     teams: Schema.Attribute.Relation<'oneToMany', 'api::team.team'>;
     tiers: Schema.Attribute.Relation<'oneToMany', 'api::tier.tier'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -1437,7 +1409,6 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::brand-form.brand-form': ApiBrandFormBrandForm;
-      'api::category.category': ApiCategoryCategory;
       'api::editor-content.editor-content': ApiEditorContentEditorContent;
       'api::faq.faq': ApiFaqFaq;
       'api::global.global': ApiGlobalGlobal;

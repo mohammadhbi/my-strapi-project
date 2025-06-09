@@ -17,10 +17,11 @@
     "content": {
       "type": "json"
     },
-    "users_permissions_user": {
+    "brand_form": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "relation": "manyToOne",
+      "target": "api::brand-form.brand-form",
+      "inversedBy": "editor_contents"
     }
   }
 }
